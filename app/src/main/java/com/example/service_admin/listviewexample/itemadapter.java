@@ -13,11 +13,15 @@ import java.util.List;
 public class itemadapter extends BaseAdapter {
      LayoutInflater layoutInflater;
     private final Context context;
+    DatabaseAdapter databaseAdapter;
     List<Item> itemList;
-    public itemadapter(List<Item>itemList, Context context){
+    public itemadapter(List<Item>itemList, Context context,DatabaseAdapter databaseAdapter){
       this.itemList=itemList;
       this.context=context;
         layoutInflater=layoutInflater.from(context);
+
+      this.databaseAdapter=databaseAdapter;
+
     }
 
     @Override
@@ -62,7 +66,9 @@ public class itemadapter extends BaseAdapter {
 
     public  void AddItem (Item item){
         this.itemList.add(item);
+        databaseAdapter.additem(item);
         this.notifyDataSetChanged();
+
 
     }
 
